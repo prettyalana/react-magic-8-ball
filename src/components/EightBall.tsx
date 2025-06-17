@@ -1,15 +1,9 @@
-import { useState, useEffect} from "react";
-import Quotes from "./Quotes";
+import { useState } from "react";
+import { positiveAnswers, neutralAnswers, negativeAnswers} from "../utils/quotes";
 
-function EightBall(
-  // Parameters (Placeholders) for the three defined arrays
-  positiveAnswers: string[],
-  neutralAnswers: string[],
-  negativeAnswers: string[]
-) {
-  let question: string = (
-    document.getElementById("question") as HTMLInputElement
-  ).value;
+function EightBall() {
+
+  const [question, setQuestion] = useState<string>("");
 
   // Combine the arrays
   const combinedArray: string[] = positiveAnswers.concat(
@@ -20,7 +14,17 @@ function EightBall(
   // Get a random index from the combined arrays
   const randomIndex: number = Math.floor(Math.random() * combinedArray.length);
 
-  return combinedArray[randomIndex];
+  return (
+    <>
+      <input
+        type="text"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+      />
+
+      <div>{combinedArray[randomIndex]}</div>
+    </>
+  );
 }
 
 export default EightBall;

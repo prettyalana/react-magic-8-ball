@@ -1,7 +1,5 @@
-import Text from "./Text";
-
-function Quotes() {
-  const positiveAnswers: string[] = [
+// Utility Module
+const positiveAnswers: string[] = [
     "It is certain.",
     "It is decidedly so.",
     "Yes",
@@ -27,6 +25,5 @@ function Quotes() {
     "My sources say no.",
     "Very doubtful.",
   ];
-}
 
-export default Quotes;
+export {positiveAnswers, neutralAnswers, negativeAnswers};

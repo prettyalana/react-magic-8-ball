@@ -1,5 +1,5 @@
 import EightBall from "./EightBall";
-import Quotes from "./Quotes";
+import { negativeAnswers, neutralAnswers, positiveAnswers } from "../utils/quotes";
 
 function Text() {
   // Attach submit event listener to form
@@ -14,9 +14,7 @@ function Text() {
       event.preventDefault();
 
       const eightBallAnswer = EightBall(
-        Quotes.positiveAnswers,
-        Quotes.neutralAnswers,
-        Quotes.negativeAnswers
+        [...positiveAnswers, ...neutralAnswers, ...negativeAnswers]
       );
 
       answer.textContent = eightBallAnswer;
