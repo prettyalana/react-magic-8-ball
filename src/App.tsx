@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
-import EightBall from './components/EightBall';
+import { useState } from "react";
+import { positiveAnswers, neutralAnswers, negativeAnswers } from "./utils/quotes";
 
 function App() {
+  const [question, setQuestion] = useState<string>("");
+  const [answer, setAnswer] = useState<string>("");
+
+  // Combine all answers
+  const combinedAnswers = [...positiveAnswers, ...neutralAnswers, ...negativeAnswers];
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const randomIndex = Math.floor(Math.random() * combinedAnswers.length);
+    setAnswer(combinedAnswers[randomIndex]);
+
+    // Clear question and answer after 5 seconds
+    setTimeout(() => {
+      setQuestion("");
+      setAnswer("");
+    }, 5000);
+  };
+
   return (
-    // fragment
     <>
       <nav>
         <div className="logo-container">
@@ -18,15 +36,9 @@ function App() {
         </div>
 
         <ul className="links">
-          <li>
-            <a href="#">link one</a>
-          </li>
-          <li>
-            <a href="#">link two</a>
-          </li>
-          <li>
-            <a href="#">link three</a>
-          </li>
+          <li><a href="#">link one</a></li>
+          <li><a href="#">link two</a></li>
+          <li><a href="#">link three</a></li>
         </ul>
       </nav>
 
@@ -46,7 +58,7 @@ function App() {
 
       <div className="bottom-wrapper">
         <div className="question-container">
-          <form id="eightBallForm">
+          <form id="eightBallForm" onSubmit={handleSubmit}>
             <label htmlFor="question">
               <h2>What is your question?</h2>
             </label>
@@ -56,6 +68,8 @@ function App() {
                 id="question"
                 placeholder=" Ask a question..."
                 required
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
               />
               <button type="submit">Ask</button>
             </div>
@@ -63,7 +77,7 @@ function App() {
         </div>
 
         <div className="answer-container">
-          <p id="eightBallAnswer"></p>
+          <p id="eightBallAnswer">{answer}</p>
         </div>
       </div>
     </>
