@@ -1,27 +1,6 @@
-import { useState } from "react";
-import { positiveAnswers, neutralAnswers, negativeAnswers } from "./utils/quotes";
 import EightBall from "./components/EightBall";
 
 function App() {
-  const [question, setQuestion] = useState<string>("");
-  const [answer, setAnswer] = useState<string>("");
-
-  // Combine all answers
-  const combinedAnswers = [...positiveAnswers, ...neutralAnswers, ...negativeAnswers];
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const randomIndex = Math.floor(Math.random() * combinedAnswers.length);
-    setAnswer(combinedAnswers[randomIndex]);
-
-    // Clear question and answer after 5 seconds
-    setTimeout(() => {
-      setQuestion("");
-      setAnswer("");
-    }, 5000);
-  };
-
   return (
     <>
       <nav>
