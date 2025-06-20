@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { positiveAnswers, neutralAnswers, negativeAnswers } from "../utils/quotes";
+import {
+  positiveAnswers,
+  neutralAnswers,
+  negativeAnswers,
+} from "../utils/quotes";
 
 function EightBall() {
   const [question, setQuestion] = useState<string>("");
   const [answer, setAnswer] = useState<string>("");
 
   // Combine all answers
-  const combinedAnswers = [...positiveAnswers, ...neutralAnswers, ...negativeAnswers];
+  const combinedAnswers = [
+    ...positiveAnswers,
+    ...neutralAnswers,
+    ...negativeAnswers,
+  ];
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,17 +31,30 @@ function EightBall() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Ask your question"
-        required
-      />
-      <button type="submit">Ask the Eight Ball</button>
-      <div>{answer}</div>
-    </form>
+    <div className="bottom-wrapper">
+      <div className="question-container">
+        <form id="eightBallForm" onSubmit={handleSubmit}>
+          <label htmlFor="question">
+            <h2>What is your question?</h2>
+          </label>
+          <div className="input-container">
+            <input
+              type="text"
+              id="question"
+              placeholder=" Ask a question..."
+              required
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+            />
+            <button type="submit">Ask</button>
+          </div>
+        </form>
+      </div>
+
+      <div className="answer-container">
+        <p id="eightBallAnswer">{answer}</p>
+      </div>
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { positiveAnswers, neutralAnswers, negativeAnswers } from "./utils/quotes";
+import EightBall from "./components/EightBall";
 
 function App() {
   const [question, setQuestion] = useState<string>("");
@@ -56,30 +57,7 @@ function App() {
         </div>
       </div>
 
-      <div className="bottom-wrapper">
-        <div className="question-container">
-          <form id="eightBallForm" onSubmit={handleSubmit}>
-            <label htmlFor="question">
-              <h2>What is your question?</h2>
-            </label>
-            <div className="input-container">
-              <input
-                type="text"
-                id="question"
-                placeholder=" Ask a question..."
-                required
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-              />
-              <button type="submit">Ask</button>
-            </div>
-          </form>
-        </div>
-
-        <div className="answer-container">
-          <p id="eightBallAnswer">{answer}</p>
-        </div>
-      </div>
+      <EightBall/>
     </>
   );
 }
